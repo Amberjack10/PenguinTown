@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public List<Character> characterList = new List<Character>();
     public TextMeshProUGUI playerName;
+    public CharacterType characterType;
 
     public Animator playerAnimatorController;
 
@@ -33,5 +34,14 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    public void SetCharacter(string name)
+    {
+        
+        var character = characterList.Find(item => item.CharacterType == characterType);
+
+        playerAnimatorController.runtimeAnimatorController = character.CharacterAnimatorController;
+        playerName.text = name;
     }
 }

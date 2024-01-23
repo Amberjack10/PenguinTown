@@ -14,7 +14,6 @@ public class PopupStartMenu : MonoBehaviour
 
     [SerializeField] private GameObject popupCharacterSelectMenu;
 
-    private CharacterType characterType;
 
     public void OnClickSelectCharacter()
     {
@@ -23,12 +22,13 @@ public class PopupStartMenu : MonoBehaviour
 
     public void GetSelectedCharacter(int index)
     {
-        characterType = (CharacterType)index;
-        var character = GameManager.Instance.characterList.Find(item => item.CharacterType == characterType);
+        GameManager.Instance.characterType = (CharacterType)index;
+
+        var character = GameManager.Instance.characterList.Find(item => item.CharacterType == GameManager.Instance.characterType);
 
         SelectedCharacter.sprite = character.CharacterSprite;
         SelectedCharacter.SetNativeSize();
-        SetCharacterImage(characterType, SelectedCharacter);
+        SetCharacterImage(GameManager.Instance.characterType, SelectedCharacter);
 
         popupCharacterSelectMenu.SetActive(false);
     }
@@ -60,8 +60,7 @@ public class PopupStartMenu : MonoBehaviour
         {
             return;
         }
-
-        GameManager.Instance.playerName.text = inputField.text;
+        GameManager.Instance.SetCharacter(inputField.text);
 
         Destroy(gameObject);
     }
