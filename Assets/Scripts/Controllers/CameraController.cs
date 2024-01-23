@@ -19,11 +19,12 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        // 카메라가 맵 범위를 벗어나지 않도록 설정
         Vector3 desiredPosition = new Vector3(
             Mathf.Clamp(target.position.x, limitMinX + cameraHalfWidth, limitMaxX - cameraHalfWidth),   // X
             Mathf.Clamp(target.position.y, limitMinY + cameraHalfHeight, limitMaxY - cameraHalfHeight), // Y
             -10);                                                                                                  // Z
 
-        transform.position = desiredPosition;
+        transform.position = desiredPosition;   // 카메라가 캐릭터의 움직임을 따라 움직이도록
     }
 }

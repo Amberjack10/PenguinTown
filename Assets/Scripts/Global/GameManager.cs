@@ -36,11 +36,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    // 플레이어 캐릭터 설정하기
     public void SetCharacter(string name)
     {
         
         var character = characterList.Find(item => item.CharacterType == characterType);
 
+        // 플레이어의 SpriteRenderer에 있는 sprite, animator controller 변경하기
         playerAnimatorController.runtimeAnimatorController = character.CharacterAnimatorController;
         playerName.text = name;
     }

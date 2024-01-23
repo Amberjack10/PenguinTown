@@ -30,7 +30,6 @@ public class PenguinTownAimRotation : MonoBehaviour
 
         // rotZ의 각도의 절대값이 90도가 넘어가게 되면
         // 캐릭터 스프라이트 좌우 반전 시켜주기
-        //characterRenderer.flipX = Mathf.Abs(rotZ) > 90f;
         characterRenderer.flipX = Mathf.Abs(rotZ) > 90f;
     }
 }
