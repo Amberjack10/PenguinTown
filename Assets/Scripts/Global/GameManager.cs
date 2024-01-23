@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public List<Character> characterList = new List<Character>();
+    public TextMeshProUGUI playerName;
+
+    public Animator playerAnimatorController;
 
     private void Awake()
     {

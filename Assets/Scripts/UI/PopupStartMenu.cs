@@ -10,12 +10,48 @@ public class PopupStartMenu : MonoBehaviour
     [SerializeField] private InputField inputField;
     [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private Button characterSelectButton;
+    [SerializeField] private Image SelectedCharacter;
 
     [SerializeField] private GameObject popupCharacterSelectMenu;
+
+    private CharacterType characterType;
 
     public void OnClickSelectCharacter()
     {
         popupCharacterSelectMenu.SetActive(true);
+    }
+
+    public void GetSelectedCharacter(int index)
+    {
+        characterType = (CharacterType)index;
+        var character = GameManager.Instance.characterList.Find(item => item.CharacterType == characterType);
+
+        SelectedCharacter.sprite = character.CharacterSprite;
+        SelectedCharacter.SetNativeSize();
+        SetCharacterImage(characterType, SelectedCharacter);
+
+        popupCharacterSelectMenu.SetActive(false);
+    }
+
+    public void SetCharacterImage(CharacterType c, Image image)
+    {
+        float scale = 0;
+        float PosY = 0;
+
+        switch (c)
+        {
+            case CharacterType.Penguin:
+                scale = 1;
+                PosY = 100f;
+                break;
+            case CharacterType.Dwarf:
+                scale = 1.5f;
+                PosY = 50;
+                break;
+        }
+
+        SelectedCharacter.transform.localScale = new Vector3(scale, scale, 0);
+        SelectedCharacter.transform.localPosition = new Vector3(0, PosY, 0);
     }
 
     public void OnClickJoin()
@@ -25,7 +61,7 @@ public class PopupStartMenu : MonoBehaviour
             return;
         }
 
-        playerName.text = inputField.text;
+        GameManager.Instance.playerName.text = inputField.text;
 
         Destroy(gameObject);
     }
