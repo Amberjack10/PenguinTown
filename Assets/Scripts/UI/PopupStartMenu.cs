@@ -11,10 +11,11 @@ public class PopupStartMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private Button characterSelectButton;
 
+    [SerializeField] private GameObject popupCharacterSelectMenu;
+
     public void OnClickSelectCharacter()
     {
-
-        Debug.Log("SelectCharacter");
+        popupCharacterSelectMenu.SetActive(true);
     }
 
     public void OnClickJoin()

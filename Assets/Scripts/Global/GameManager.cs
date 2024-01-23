@@ -12,9 +12,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public List<Character> characterList = new List<Character>();
+
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()
